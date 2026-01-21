@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1 Mes Contigo ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0; padding: 0; height: 100%;
+            font-family: 'Cormorant Garamond', serif;
+            background: #fff5f5;
+            color: #444;
+            overflow: hidden; 
+        }
+
+        .slider-container {
+            width: 100%; height: 100vh;
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .slide {
+            min-width: 100%; height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            padding: 40px; box-sizing: border-box;
+            opacity: 0; transition: opacity 1s ease;
+        }
+
+        .slide.active { opacity: 1; }
+
+        .content-box {
+            display: flex; background: white;
+            width: 90%; max-width: 1100px; height: 80vh;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            border-radius: 20px; overflow: hidden;
+        }
+
+        .image-side {
+            flex: 1; background-color: #eee; position: relative; overflow: hidden;
+        }
+
+        .image-side img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 10s ease;
+        }
+        
+        .slide.active .image-side img { transform: scale(1.1); }
+        .peques-filter { filter: sepia(0.3); }
+
+        .text-side {
+            flex: 1.2; 
+            padding: 60px;
+            display: flex; 
+            flex-direction: column; 
+            justify-content: flex-start; /* Empieza arriba para no cortar título */
+            overflow-y: auto;
+            background: radial-gradient(circle at top right, #fffbfb, #fff);
+        }
+
+        h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.8rem;
+            color: #b93b3b;
+            margin: 0 0 25px 0;
+            line-height: 1.1;
+            font-weight: 700;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.05);
+            flex-shrink: 0;
+        }
+
+        p {
+            font-size: 1.35rem; line-height: 1.6;
+            margin-bottom: 25px; color: #444;
+            text-align: justify;
+        }
+
+        /* Botones */
+        .nav-btn {
+            position: fixed; top: 50%; transform: translateY(-50%);
+            background: white; border: none;
+            width: 60px; height: 60px; border-radius: 50%;
+            font-size: 2rem; color: #b93b3b;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            cursor: pointer; z-index: 100; transition: all 0.3s;
+        }
+        .nav-btn:hover { transform: translateY(-50%) scale(1.1); background: #b93b3b; color: white; }
+        .prev { left: 30px; display: none; }
+        .next { right: 30px; }
+
+        /* Intro */
+        #intro {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #fff5f5; z-index: 200;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            transition: opacity 1s;
+        }
+        
+        .btn-magic {
+            padding: 15px 40px; font-size: 1.5rem;
+            background: #b93b3b; color: white; border: none;
+            border-radius: 50px; cursor: pointer;
+            font-family: 'Cormorant Garamond', serif;
+            box-shadow: 0 5px 15px rgba(185, 59, 59, 0.3);
+            margin-top: 20px;
+        }
+
+        audio { display: none; }
+
+        @media (max-width: 900px) {
+            .content-box { flex-direction: column; height: 90vh; width: 95%; }
+            .image-side { flex: 0.6; height: 250px; flex-shrink: 0; }
+            .text-side { flex: 1.5; padding: 30px; }
+            h2 { font-size: 2.8rem; margin-top: 10px; }
+            p { font-size: 1.15rem; line-height: 1.5; }
+            .nav-btn { width: 45px; height: 45px; font-size: 1.5rem; bottom: 15px; top: auto; transform: none; }
+            .prev { left: 20px; } .next { right: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="musica" loop>
+        <source src="para_nuestro_primermes.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="intro">
+        <h1 style="font-family: 'Dancing Script'; font-size: 4.5rem; color: #b93b3b; text-align: center; line-height: 1.2;">Feliz 1er Mes<br>Tamara</h1>
+        <button class="btn-magic" onclick="startStory()">✨ Abrir Libro</button>
+    </div>
+
+    <div class="slider-container" id="slider">
+
+        <!-- Slide 1 -->
+        <div class="slide active">
+            <div class="content-box">
+                <div class="image-side">
+                    <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?q=80&w=800&auto=format&fit=crop" alt="Distancia">
+                </div>
+                <div class="text-side">
+                    <h2>Coincidir no fue casualidad</h2>
+                    <p>
+                        Dicen que el mundo es inmenso y caótico, que somos millones de personas caminando sin rumbo. Pero de alguna forma inexplicable, mis coordenadas encontraron las tuyas. No creo que haya sido suerte; creo que hay almas que tienen un imán invisible que las empuja a encontrarse, sin importar el mapa.
+                    </p>
+                    <p>
+                        Sé que hay kilómetros entre nosotros ahora mismo. Sé que no puedo tocar tu puerta un martes cualquiera. Pero, Tamara, saber que existes y que me piensas hace que cualquier distancia se sienta ridículamente pequeña comparada con lo que siento.
+                    </p>
+                    <p>
+                        Este primer mes me ha enseñado que la cercanía no se mide en metros, sino en cuántas veces al día sonrío mirando la pantalla solo porque apareció tu nombre.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide">
+            <div class="content-box">
+                <div class="image-side">
+                    <img src="pequenos.jpeg" class="peques-filter" alt="Nosotros Pequeños">
+                </div>
+                <div class="text-side">
+                    <h2>Almas que ya se conocían</h2>
+                    <p>
+                        A veces miro esta imagen y siento un nudo en la garganta, pero de los bonitos. Es como si, en otra vida, tú y yo ya hubiéramos jugado juntos en ese parque, riéndonos de nada y de todo a la vez.
+                    </p>
+                    <p>
+                        El destino no improvisa, mi amor. Solo estaba esperando el momento exacto, cuando ambos estuviéramos listos, para que dejáramos de ser "dos historias separadas" y empezáramos a escribir este capítulo que se llama "nosotros".
+                    </p>
+                    <p>
+                        Me hubiera encantado conocerte desde entonces, para haberte cuidado desde chiquita. Pero me consuela saber que tengo todo el futuro por delante para recuperar ese tiempo y cuidarte como te mereces.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide">
+            <div class="content-box">
+                <div class="image-side">
+                    <img src="https://images.unsplash.com/photo-1621112904887-419379ce6824?q=80&w=800&auto=format&fit=crop" alt="Manos">
+                </div>
+                <div class="text-side">
+                    <h2>La Promesa de Quedarse</h2>
+                    <p>
+                        Este mes no solo fueron risas; también hubo silencios y miedos. Pero aprendí algo valioso: el amor real no es un cuento de hadas donde nunca llueve. El amor real es mirar la tormenta y decir: "no me importa mojarme, si es contigo".
+                    </p>
+                    <p>
+                        Gracias por la paciencia, por el perdón y por enseñarme que volver a elegirnos es la forma más valiente de amar. No quiero a alguien perfecto, te quiero a ti, con tus días buenos y tus días grises de guardia.
+                    </p>
+                    <p>
+                        Prometo que, sin importar qué tan difícil se ponga el camino o qué tan cansada estés, mi mano siempre va a estar ahí para sostener la tuya. No te suelto.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="slide">
+            <div class="content-box">
+                <div class="image-side">
+                    <img src="ella.jpeg" alt="Tamara">
+                </div>
+                <div class="text-side" style="text-align: center; align-items: center; justify-content: center;">
+                    <h2>Mi Causa y mi Efecto</h2>
+                    <p style="text-align: center;">
+                        No necesito tenerte enfrente para saber que eres la mujer de mi vida. Eres la calma en mi caos, mi notificación favorita y el suspiro que se me escapa cada noche antes de dormir.
+                    </p>
+                    <p style="text-align: center;">
+                        Gracias por estos primeros 30 días. Por cada mensaje, por cada llamada y por hacerme sentir que, por fin, estoy en el lugar correcto.
+                    </p>
+                    <p style="font-size: 1.6rem; color: #b93b3b; font-weight: bold; margin-top: 20px;">
+                        Feliz 1er Mes, Mi Mujer Perfecta.<br>
+                        Te amodoro con el alma. ❤️
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <button class="nav-btn prev" onclick="moveSlide(-1)">❮</button>
+    <button class="nav-btn next" onclick="moveSlide(1)">❯</button>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const slider = document.getElementById('slider');
+        const prevBtn = document.querySelector('.prev');
+        const nextBtn = document.querySelector('.next');
+        const intro = document.getElementById('intro');
+        const musica = document.getElementById('musica');
+        const totalSlides = slides.length;
+
+        function startStory() {
+            // Intenta reproducir música, pero NO detiene el flujo si falla
+            if(musica) {
+                musica.play().catch(e => console.log("Música bloqueada, continuando sin audio..."));
+            }
+
+            // Ocultar pantalla de carga inmediatamente
+            intro.style.opacity = '0';
+            setTimeout(() => {
+                intro.style.display = 'none';
+            }, 1000);
+        }
+
+        function moveSlide(direction) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide += direction;
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+            setTimeout(() => { slides[currentSlide].classList.add('active'); }, 400);
+            prevBtn.style.display = currentSlide === 0 ? 'none' : 'block';
+            nextBtn.style.display = currentSlide === totalSlides - 1 ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>
